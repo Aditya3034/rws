@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import { errorMiddleware } from './middlewares/error.middleware.js';
+import apiDocumentation from './documentation/api-docs.js';
+
 
 dotenv.config();
 
@@ -17,6 +19,11 @@ app.use(cors({
   origin: "*", // process.env.CLIENT_URL,
   credentials: true
 }));
+
+
+app.get('/', (req, res) => {
+  res.status(200).json(apiDocumentation);
+});
 
 // Routes
 app.use('/api/auth', authRoutes);

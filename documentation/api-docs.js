@@ -158,10 +158,28 @@ const apiDocumentation = {
             "type": "application/json",
             "required": true,
             "content": {
-              "idToken": {
+              "email": {
                 "type": "string",
-                "description": "Google ID token from client-side authentication",
-                "required": true
+                "description": "User's email from Google authentication",
+                "required": true,
+                "example": "johndoe@gmail.com"
+              },
+              "displayName": {
+                "type": "string",
+                "description": "User's display name from Google authentication",
+                "required": true,
+                "example": "John Doe"
+              },
+              "photoURL": {
+                "type": "string",
+                "description": "User's profile photo URL from Google authentication",
+                "example": "https://example.com/photo.jpg"
+              },
+              "uid": {
+                "type": "string",
+                "description": "Firebase Auth UID",
+                "required": true,
+                "example": "a1b2c3d4e5f6"
               }
             }
           },
@@ -204,11 +222,11 @@ const apiDocumentation = {
               }
             },
             "400": {
-              "description": "Missing or invalid Google ID token",
+              "description": "Missing or invalid request body",
               "content": {
                 "message": {
                   "type": "string",
-                  "example": "Google ID token is required"
+                  "example": "Email, displayName, and UID are required"
                 }
               }
             },
@@ -222,7 +240,7 @@ const apiDocumentation = {
               }
             }
           }
-        },
+        },                
         {
           "path": "/signout",
           "method": "GET",

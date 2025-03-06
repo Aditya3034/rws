@@ -90,22 +90,24 @@ export const signin = async (req, res, next) => {
 export const google = async (req, res, next) => {
   try {
     // For Cloud Functions, we'll expect an idToken from the client
-    const { idToken } = req.body;
+    // const { idToken } = req.body;
 
-    if (!idToken) {
-      return next(errorHandler(400, 'Google ID token is required'));
-    }
+    // if (!idToken) {
+    //   return next(errorHandler(400, 'Google ID token is required'));
+    // }
 
-    // Create credential from token
-    const credential = GoogleAuthProvider.credential(idToken);
+    // // Create credential from token
+    // const credential = GoogleAuthProvider.credential(idToken);
 
-    // Sign in with credential
-    const result = await signInWithCredential(auth, credential);
-    const user = result.user;
+    // // Sign in with credential
+    // const result = await signInWithCredential(auth, credential);
+    // const user = result.user;
 
-    // Extract user info
-    const { email, displayName: name, photoURL: photo, uid } = user;
+    // // Extract user info
+    // const { email, displayName: name, photoURL: photo, uid } = user;
 
+
+    const {email, displayName: name, photoURL: photo, uid} = req.body; 
     // Check if user exists
     const usersRef = collection(db, 'users');
     const q = query(usersRef, where('email', '==', email));

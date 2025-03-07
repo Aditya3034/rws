@@ -79,6 +79,7 @@ export const signup = async (req, res, next) => {
 
     const verificationLink = `${process.env.SERVER_URL}/api/auth/verify-email/${verificationCode}`;
   // Get client URL dynamically
+    console.log(verificationLink);
     
   // Redirect to login page
     sendVerificationEmail(email, verificationLink);

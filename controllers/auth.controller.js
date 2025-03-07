@@ -227,7 +227,8 @@ export const google = async (req, res, next) => {
         password: hashPassword,
         avatar: photo || '',
         createdAt: new Date().toISOString(),
-        uid // Store Firebase Auth UID
+        uid, // Store Firebase Auth UID
+        verified: true,
       };
 
       // Add user to Firestore

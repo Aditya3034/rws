@@ -244,7 +244,7 @@ export const google = async (req, res, next) => {
 
       res.cookie('access_token', token, { httpOnly: true })
         .status(200)
-        .json({ id: userDocRef.id, ...userWithoutPassword });
+        .json({ user: { id: userDocRef.id, ...userWithoutPassword }});
     }
   } catch (error) {
     console.error('Google auth error:', error);

@@ -31,3 +31,21 @@ export const verifyToken = async (req, res, next) => {
     next(errorHandler(401, 'Invalid token'));
   }
 };
+
+
+export const verifyAdmin = async (req, res, next) => {
+  try {
+    if (!req.user) {
+      return next(errorHandler(401, 'Authentication required'));
+    }
+    
+    // Check if user is admin
+    if (!req.user.isAdmin) {
+      return next(errorHandler(403, 'Access denied: Admin privileges required'));
+    }
+    
+    next();
+  } catch (error) {
+    return next(errorHandler(500, 'Server error'));
+  }
+};
